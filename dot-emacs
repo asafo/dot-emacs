@@ -1,3 +1,4 @@
+;; Stright
 (defvar bootstrap-version)
 (let ((bootstrap-file
        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
@@ -10,6 +11,8 @@
       (goto-char (point-max))
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
+
+;; Font
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -23,11 +26,12 @@
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "Hack Nerd Font" :foundry "SRC" :slant normal :weight normal :height 143 :width normal)))))
 
+;; Stright Packages
 (straight-use-package 'helm)
 (straight-use-package 'go-mode)
 (straight-use-package 'magit)
 (straight-use-package 'auto-complete)
-
+(straight-use-package 'yaml-mode)
 
 ;; Taken From: https://dr-knz.net/a-tour-of-emacs-as-go-editor.html:
 ;; I use Emacs in text terminals and I know my shortcuts. I value an extra line of text in the window.
