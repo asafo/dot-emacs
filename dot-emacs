@@ -25,6 +25,7 @@
 
 (straight-use-package 'helm)
 (straight-use-package 'go-mode)
+(straight-use-package 'magit)
 
 
 ;; Taken From: https://dr-knz.net/a-tour-of-emacs-as-go-editor.html:
