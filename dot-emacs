@@ -26,6 +26,7 @@
 (straight-use-package 'helm)
 (straight-use-package 'go-mode)
 (straight-use-package 'magit)
+(straight-use-package 'auto-complete)
 
 
 ;; Taken From: https://dr-knz.net/a-tour-of-emacs-as-go-editor.html:
@@ -55,17 +56,19 @@
 (show-paren-mode 1)
 
 ;; Go
+;; http://tleyden.github.io/blog/2014/05/22/configure-emacs-as-a-go-editor-from-scratch/
 (defun go-mode-hook-settings ()
   ; Call Gofmt before saving
   (add-hook 'before-save-hook 'gofmt-before-save)
   ; Godef jump key binding
   (local-set-key (kbd "M-.") 'godef-jump)
   (local-set-key (kbd "M-*") 'pop-tag-mark)
-  )
+  ; Autocomplete
+  (auto-complete-mode 1)
+)
 (add-hook 'go-mode-hook 'go-mode-hook-settings)
 
 ;; Helm
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 (helm-mode 1)
-
