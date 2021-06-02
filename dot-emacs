@@ -4,9 +4,9 @@
       (bootstrap-version 5))
   (unless (file-exists-p bootstrap-file)
     (with-current-buffer
-        (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
-         'silent 'inhibit-cookies)
+	(url-retrieve-synchronously
+	 "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+	 'silent 'inhibit-cookies)
       (goto-char (point-max))
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
@@ -27,4 +27,35 @@
 (straight-use-package 'go-mode)
 
 
+;; Taken From: https://dr-knz.net/a-tour-of-emacs-as-go-editor.html:
+;; I use Emacs in text terminals and I know my shortcuts. I value an extra line of text in the window.
 (menu-bar-mode 0)
+;; I find myself measuring the width of items horizontally. Syntax errors also mention column numbers. It is annoying that Emacs does not show the column number by default.
+(column-number-mode 1)
+;; As I switch back and forth between my editor and other things, I want to quickly remind myself where my cursor is positioned. I do this by highlighting the current line.
+(global-hl-line-mode 1)
+;; Many tools choke when there is excess whitespace characters, or when they are in the wrong place. It is also common for coding styles to encourage a line width limit.
+(global-whitespace-mode 1)
+;; see the apropos entry for whitespace-style
+(setq
+   whitespace-style
+   '(face ; viz via faces
+     trailing ; trailing blanks visualized
+     lines-tail ; lines beyond whitespace-line-column
+     space-before-tab
+     space-after-tab
+     newline ; lines with only blanks
+     indentation ; spaces used for indent when config wants tabs
+     empty ; empty lines at beginning or end
+     )
+   whitespace-line-column 100 ; column at which whitespace-mode says the line is too long
+   )
+;; Matching parentheses, braces, etc.
+(show-paren-mode 1)
+
+
+
+;; Helm
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+(helm-mode 1)
