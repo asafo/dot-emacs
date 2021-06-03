@@ -18,13 +18,15 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-enabled-themes '(tsdh-dark)))
+ '(custom-enabled-themes '(tsdh-dark))
+ '(custom-safe-themes
+   '("df7cb8c3562116322da49a22c233e12908afacc6949ae2a6518a5976394dacbc" default)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Hack Nerd Font" :foundry "SRC" :slant normal :weight normal :height 143 :width normal)))))
+ '(default ((t (:family "Hack Nerd Font" :foundry "SRC" :slant normal :weight normal :height 113 :width normal)))))
 
 ;; Stright Packages
 (straight-use-package 'helm)
@@ -32,14 +34,22 @@
 (straight-use-package 'magit)
 (straight-use-package 'auto-complete)
 (straight-use-package 'yaml-mode)
+(straight-use-package 'dockerfile-mode)
+(straight-use-package 'web-mode)
+(straight-use-package 'restclient)
+(straight-use-package 'markdown-mode)
+(straight-use-package 'php-mode)
+(straight-use-package 'terraform-mode)
 
 ;; Taken From: https://dr-knz.net/a-tour-of-emacs-as-go-editor.html:
 ;; I use Emacs in text terminals and I know my shortcuts. I value an extra line of text in the window.
 (menu-bar-mode 0)
+(tool-bar-mode 0)
 ;; I find myself measuring the width of items horizontally. Syntax errors also mention column numbers. It is annoying that Emacs does not show the column number by default.
 (column-number-mode 1)
 ;; As I switch back and forth between my editor and other things, I want to quickly remind myself where my cursor is positioned. I do this by highlighting the current line.
 (global-hl-line-mode 1)
+(set-face-background hl-line-face "gray13") ;; color for the hl-line
 ;; Many tools choke when there is excess whitespace characters, or when they are in the wrong place. It is also common for coding styles to encourage a line width limit.
 (global-whitespace-mode 1)
 ;; see the apropos entry for whitespace-style
@@ -62,12 +72,15 @@
 ;; Go
 ;; http://tleyden.github.io/blog/2014/05/22/configure-emacs-as-a-go-editor-from-scratch/
 (defun go-mode-hook-settings ()
-  ; Call Gofmt before saving
+  ;; Use goimports instead of go-fmt
+  (setq gofmt-command "goimports")
+
+  ;; Call Gofmt before saving
   (add-hook 'before-save-hook 'gofmt-before-save)
-  ; Godef jump key binding
+  ;; Godef jump key binding
   (local-set-key (kbd "M-.") 'godef-jump)
   (local-set-key (kbd "M-*") 'pop-tag-mark)
-  ; Autocomplete
+  ;; Autocomplete
   (auto-complete-mode 1)
 )
 (add-hook 'go-mode-hook 'go-mode-hook-settings)
