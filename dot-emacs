@@ -39,7 +39,11 @@
 (straight-use-package 'restclient)
 (straight-use-package 'markdown-mode)
 (straight-use-package 'php-mode)
+(straight-use-package 'geben)
 (straight-use-package 'terraform-mode)
+(straight-use-package 'kubernetes)
+(straight-use-package 'ansible)
+(straight-use-package 'mustache-mode)
 
 ;; Taken From: https://dr-knz.net/a-tour-of-emacs-as-go-editor.html:
 ;; I use Emacs in text terminals and I know my shortcuts. I value an extra line of text in the window.
@@ -50,22 +54,7 @@
 ;; As I switch back and forth between my editor and other things, I want to quickly remind myself where my cursor is positioned. I do this by highlighting the current line.
 (global-hl-line-mode 1)
 (set-face-background hl-line-face "gray13") ;; color for the hl-line
-;; Many tools choke when there is excess whitespace characters, or when they are in the wrong place. It is also common for coding styles to encourage a line width limit.
-(global-whitespace-mode 1)
-;; see the apropos entry for whitespace-style
-(setq
-   whitespace-style
-   '(face ; viz via faces
-     trailing ; trailing blanks visualized
-     lines-tail ; lines beyond whitespace-line-column
-     space-before-tab
-     space-after-tab
-     newline ; lines with only blanks
-     indentation ; spaces used for indent when config wants tabs
-     empty ; empty lines at beginning or end
-     )
-   whitespace-line-column 100 ; column at which whitespace-mode says the line is too long
-   )
+
 ;; Matching parentheses, braces, etc.
 (show-paren-mode 1)
 
@@ -96,3 +85,6 @@
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 (helm-mode 1)
+
+;; Auto Modes
+(add-to-list 'auto-mode-alist '("\\.mustache\\'" . mustache-mode))
