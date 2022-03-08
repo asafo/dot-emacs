@@ -45,6 +45,8 @@
 (straight-use-package 'ansible)
 (straight-use-package 'mustache-mode)
 (straight-use-package 'elm-mode)
+(straight-use-package 'rust-mode)
+(straight-use-package 'lua-mode)
 
 ;; Taken From: https://dr-knz.net/a-tour-of-emacs-as-go-editor.html:
 ;; I use Emacs in text terminals and I know my shortcuts. I value an extra line of text in the window.
