@@ -59,6 +59,9 @@
 ;; Matching parentheses, braces, etc.
 (show-paren-mode 1)
 
+;; Spaces are better than Tabs
+(setq-default indent-tabs-mode nil)
+
 ;; Go
 ;; http://tleyden.github.io/blog/2014/05/22/configure-emacs-as-a-go-editor-from-scratch/
 (add-to-list 'exec-path "/home/asaf/go/bin")
